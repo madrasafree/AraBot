@@ -1,0 +1,50 @@
+html {
+  padding: 0.8em;
+  font-family: 'helvetica neue';
+}
+
+/*//////////// Graph//////////////////////////////// */
+/*///////////////////////////////////////////////// */
+/*//////////////////////////////////////////////// */
+
+
+#myDiagramDiv {
+  flex-grow: 1;
+}
+
+#myPaletteDiv, #myDiagramDiv {
+  background-color: #9b9b9b;
+  height: 95vh;
+}
+
+
+
+
+
+/*//////////// Lessons List //////////////////////// */
+/*///////////////////////////////////////////////// */
+/*//////////////////////////////////////////////// */
+
+.LessonsListTitle{
+  background: black;
+  color: white;
+}
+
+/* add some style example: in hover */
+.createNewLessonArea{
+
+}
+
+.lessonsDisplay form{
+    display: inline;
+}
+
+.display button{
+  background: transparent;
+  color: black;
+  border: none;
+}
+
+.delete {
+  float: right;
+}

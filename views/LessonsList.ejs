@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <!-- add bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <!-- FONT AWSEOME -->
+  <script src="https://kit.fontawesome.com/cd538c6889.js" crossorigin="anonymous"></script>
+
+  <!-- add the css file -->
+  <link rel="stylesheet" href="./CSS/GraphStyle.css" />
+
+  <title>Lessons</title>
+</head>
+
+<body>
+
+  <div class="list-group container" style="margin: 2em;">
+    <button type="button" class="list-group-item list-group-item-action LessonsListTitle" disabled>
+      <h3>Lesson</h3>
+    </button>
+
+    <form class="list-group-item list-group-item-action" action="/" method="post">
+      <input class="form-control" type="text" name="newLessonName" placeholder="New Lesson Title" autocomplete="off" required>
+    </form>
+
+    <% lessons.forEach(function(lesson){ %>
+    <div class="lessonsDisplay list-group-item list-group-item-action">
+      <div class="input-group">
+
+        <!-- Display the lesson -->
+        <form class="display" action="/:lessonID" method="get">
+          <button class="input-group-text" type="submit" name="LessonName" value="<%=lesson._id%>"> <%= lesson.name %> </button>
+        </form>
+
+        <!-- Rename the lesson -->
+        <form class="rename" action="/RenameLesson" method="post">
+          <input class="form-control" type="text" name="NewTitle" placeholder="Rename" autocomplete="off">
+          <input type="hidden" name="lessonId" value="<%=lesson._id%>"></input>
+        </form>
+
+        <!-- Delete the lesson -->
+        <form class="delete" action="/DeleteLesson" method="post">
+          <button class="btn btn-dark" type="submit" name="lessonToDelete" value="<%=lesson._id%>"> <i class="fas fa-trash"></i> </button>
+        </form>
+      </div>
+    </div>
+    <% }); %>
+  </div>
+
+</body>
+
+</html>
