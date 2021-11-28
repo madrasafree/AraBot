@@ -277,7 +277,6 @@
       // temporary links used by LinkingTool and RelinkingTool are also orthogonal:
       myDiagram.toolManager.linkingTool.temporaryLink.routing = go.Link.Orthogonal;
       myDiagram.toolManager.relinkingTool.temporaryLink.routing = go.Link.Orthogonal;
-
       // initialize the Palette that is on the left side of the page
       myPalette =
         $(go.Palette, "myPaletteDiv", // must name or refer to the DIV HTML element
@@ -331,13 +330,13 @@
 
     // TODO: make this function save auto
     function save() {
-      document.getElementById("NewSchema").value = myDiagram.model.toJson();
+      document.getElementById("newGraph").value = myDiagram.model.toJson();
       myDiagram.isModified = false;
     }
 
 
-    function load(jsonGraph) {
-      myDiagram.model = go.Model.fromJson(jsonGraph);
+    function load(jasonGraph) {
+      myDiagram.model = go.Model.fromJson(jasonGraph);
     }
 
   </script>
@@ -350,12 +349,26 @@
 
   <div class="container-fluid">
 
+    <div class="buttons">
+      <h3> Lesson name:  "<%= lesson[0].name %>" </h3>
+      <form class="" action="/saveGraph" method="post">
+        <button type="submit" class="btn btn-secondary">Save</button>
+        <input type="hidden" id="newGraph" name="newGraph"></input>
+        <input type="hidden" name="lessonId" value="<%=lesson._id%>"></input>
+      </form>
+      <form class="" action="/ClearGraph" method="post">
+        <button type="submit" class="btn btn-secondary">Clear</button>
+        <input type="hidden" name="lessonId" value="<%=lesson._id%>"></input>
+      </form>
+
+    </div>
+
     <div class="graph_building row">
       <div id="myPaletteDiv" class="col-sm-2"></div>
       <div id="myDiagramDiv" class="col-sm-10"></div>
     </div>
 
-    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700&swap' rel='stylesheet' type='text/css'>
+    <!-- <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700&swap' rel='stylesheet' type='text/css'> -->
   </div>
 </body>
 
