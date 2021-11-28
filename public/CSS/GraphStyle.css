@@ -14,35 +14,36 @@ html {
 
 #myPaletteDiv, #myDiagramDiv {
   background-color: #9b9b9b;
-  height: 95vh;
+  height: 87vh;
 }
 
+.buttons form, h3{
+  display: inline;
+}
 
+.buttons button{
+  margin: 0 10px 10px 0;
+}
 
 
 
 /*//////////// Lessons List //////////////////////// */
 /*///////////////////////////////////////////////// */
 /*//////////////////////////////////////////////// */
-
-.LessonsListTitle{
-  background: black;
-  color: white;
-}
-
-/* add some style example: in hover */
-.createNewLessonArea{
-
-}
-
 .lessonsDisplay form{
     display: inline;
+}
+
+.lessonsDisplay .form-control{
+  width: 200px;
+  margin: 0 20px 0 50px;
 }
 
 .display button{
   background: transparent;
   color: black;
   border: none;
+  width: 760px;
 }
 
 .delete {
