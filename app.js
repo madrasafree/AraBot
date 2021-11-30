@@ -127,8 +127,7 @@ app.post("/saveGraph", function(req, res) {
   console.log("Successfully Saved The New GraphSchema");
   //redirect to the graph page
   // TODO: fix this
-  lessonID = req.body.lessonId;
-  res.redirect("/:lessonID");
+  res.redirect("/");
 });
 
 //restart the GraphSchema, clear the old one.
@@ -142,13 +141,12 @@ app.post("/ClearGraph", function(req, res) {
   updateLesson(filter, update);
   console.log("Successfully Cleared The GraphSchema");
   // TODO: fix this
-  lessonID = req.body.lessonId;
-  res.redirect("/:lessonID");
+  res.redirect("/");
 });
 
-app.get("/:lessonID", function(req, res) {
-  let lessonID = req.body.LessonID;
-  Lesson.find(lessonID, function(err, foundItems) {
+app.post("/:lessonId", function(req, res) {
+  let lessonId = req.body.lessonId;
+  Lesson.find({_id: lessonId}, function(err, foundItems) {
     if (!err) {
       res.render("Graph", {
         lesson: foundItems
