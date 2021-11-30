@@ -338,8 +338,6 @@
     function load(jasonGraph) {
       myDiagram.model = go.Model.fromJson(jasonGraph);
     }
-
-
   </script>
 
 </head>
@@ -351,16 +349,15 @@
   <div class="container-fluid">
 
     <div class="buttons">
-      <h3> Lesson Title:  "<%= lesson[0].name %>" </h3>
+      <h3> Lesson Title: "<%= lesson[0].name %>" </h3>
       <button type="button" class="btn btn-secondary" onclick="load(<%= JSON.stringify(lesson[0].graph) %>)">Load</button>
       <form class="" action="/saveGraph" method="post">
-        <button type="submit" class="btn btn-secondary">Save</button>
-        <input type="hidden" id="newGraph" name="newGraph"></input>
-        <input type="hidden" name="lessonId" value="<%=lesson._id%>"></input>
+        <button type="submit" class="btn btn-secondary" id="newGraph" name="newGraph" onclick="save()">Save</button>
+        <input type="hidden" name="lessonId" value="<%=lesson[0]._id%>"></input>
       </form>
       <form class="" action="/ClearGraph" method="post">
         <button type="submit" class="btn btn-secondary">Clear</button>
-        <input type="hidden" name="lessonId" value="<%=lesson._id%>"></input>
+        <input type="hidden" name="lessonId" value="<%=lesson[0]._id%>"></input>
       </form>
 
     </div>
