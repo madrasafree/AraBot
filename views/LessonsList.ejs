@@ -17,37 +17,40 @@
 
 <body>
 
-  <div class="list-group container" style="margin: 2em;">
-    <button type="button" class="list-group-item list-group-item-action LessonsListTitle" disabled>
-      <h3>Lesson</h3>
+  <div class="list-group container" style="margin: 1.3em;">
+    <button type="button" class="list-group-item list-group-item-action sticky" disabled>
+      <h3>Lessons</h3>
     </button>
 
     <form class="list-group-item list-group-item-action" action="/" method="post">
       <input class="form-control" type="text" name="newLessonName" placeholder="New Lesson Title" autocomplete="off" required>
     </form>
+    <div class="lessonsDisplay" style="overflow:scroll; height:400px;">
+      <% lessons.forEach(function(lesson){ %>
+      <div class=" list-group-item list-group-item-action">
+        <div class="input-group">
 
-    <% lessons.forEach(function(lesson){ %>
-    <div class="lessonsDisplay list-group-item list-group-item-action">
-      <div class="input-group">
+          <!-- Display the lesson -->
+          <form class="display" action="/:lessonId" method="post">
+            <button class="input-group-text" type="submit" name="lessonId" value="<%=lesson._id%>"> <%= lesson.name %> </button>
+          </form>
 
-        <!-- Display the lesson -->
-        <form class="display" action="/:lessonID" method="get">
-          <button class="input-group-text" type="submit" name="LessonName" value="<%=lesson._id%>"> <%= lesson.name %> </button>
-        </form>
+          <!-- Rename the lesson -->
+          <form class="rename" action="/RenameLesson" method="POST">
+            <input type="hidden" name="lessonId" value="<%=lesson._id%>"></input>
+            <input class="form-control" type="text" name="NewTitle" placeholder="Rename" autocomplete="off">
+          </form>
 
-        <!-- Rename the lesson -->
-        <form class="rename" action="/RenameLesson" method="post">
-          <input class="form-control" type="text" name="NewTitle" placeholder="Rename" autocomplete="off">
-          <input type="hidden" name="lessonId" value="<%=lesson._id%>"></input>
-        </form>
-
-        <!-- Delete the lesson -->
-        <form class="delete" action="/DeleteLesson" method="post">
-          <button class="btn btn-dark" type="submit" name="lessonToDelete" value="<%=lesson._id%>"> <i class="fas fa-trash"></i> </button>
-        </form>
+          <!-- Delete the lesson -->
+          <form class="delete" action="/DeleteLesson" method="POST">
+            <button class="btn btn-dark" type="submit" name="lessonToDelete" value="<%=lesson._id%>"> <i class="fas fa-trash"></i> </button>
+          </form>
+        </div>
       </div>
+      <% }); %>
     </div>
-    <% }); %>
+
+
   </div>
 
 </body>
