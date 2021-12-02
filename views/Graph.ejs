@@ -369,6 +369,14 @@
 
     <!-- <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700&swap' rel='stylesheet' type='text/css'> -->
   </div>
-  <script src="Graphfun.js"></script>
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript">
+  // Click load button after 0.5 sec
+  var tim = setTimeout(function() {
+    $('#displayButton').trigger('click');
+  }, 500);
+  </script>
 </body>
+
 </html>
