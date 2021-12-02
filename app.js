@@ -127,7 +127,7 @@ app.post("/saveGraph", function(req, res) {
   console.log("Successfully Saved The New GraphSchema");
   //redirect to the graph page
   // TODO: fix this
-  res.redirect("/");
+  res.redirect("/" + req.body.lessonId);
 });
 
 //restart the GraphSchema, clear the old one.
@@ -141,12 +141,14 @@ app.post("/ClearGraph", function(req, res) {
   updateLesson(filter, update);
   console.log("Successfully Cleared The GraphSchema");
   // TODO: fix this
-  res.redirect("/");
+  res.redirect("/" + req.body.lessonId);
 });
 
-app.post("/:lessonId", function(req, res) {
-  let lessonId = req.body.lessonId;
-  Lesson.find({_id: lessonId}, function(err, foundItems) {
+app.get("/:lessonId", function(req, res) {
+  let lessonId = req.params.lessonId;
+  Lesson.find({
+    _id: lessonId
+  }, function(err, foundItems) {
     if (!err) {
       res.render("Graph", {
         lesson: foundItems
@@ -155,6 +157,10 @@ app.post("/:lessonId", function(req, res) {
       console.log("Lesson not found");
     }
   });
+});
+
+app.post("/:lessonId", function(req, res) {
+  res.redirect("/" + req.body.lessonId);
 });
 
 //our app list at port 3,000

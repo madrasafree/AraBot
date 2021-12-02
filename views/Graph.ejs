@@ -350,7 +350,7 @@
 
     <div class="buttons">
       <h3> Lesson Title: "<%= lesson[0].name %>" </h3>
-      <button type="button" class="btn btn-secondary" onclick="load(<%= JSON.stringify(lesson[0].graph) %>)">Load</button>
+      <button id="displayButton" type="button" class="btn btn-secondary" onclick="load(<%= JSON.stringify(lesson[0].graph) %>)">Load</button>
       <form class="" action="/saveGraph" method="post">
         <button type="submit" class="btn btn-secondary" id="newGraph" name="newGraph" onclick="save()">Save</button>
         <input type="hidden" name="lessonId" value="<%=lesson[0]._id%>"></input>
@@ -364,11 +364,11 @@
 
     <div class="graph_building row">
       <div id="myPaletteDiv" class="col-sm-2"></div>
-      <div id="myDiagramDiv" class="col-sm-10"></div>
+      <div id="myDiagramDiv" class="col-sm-8"></div>
     </div>
 
     <!-- <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700&swap' rel='stylesheet' type='text/css'> -->
   </div>
+  <script src="Graphfun.js"></script>
 </body>
-
 </html>
