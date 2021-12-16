@@ -3,6 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+
 const {
   Schema
 } = mongoose;
@@ -54,21 +55,24 @@ const emptyGraphJSON = {
   "linkDataArray": []
 }
 
+
+app.get("/Madrasa", function(req, res) {
+  Lesson.find({}, function(err, foundItems) {
+    res.render("Madrasa", {
+      lesson: foundItems[0],
+    });
+    // end of res.render
+  });
+});
+
+
 //When loading the app
 app.get("/", function(req, res) {
   Lesson.find({}, function(err, foundItems) {
-    if (foundItems.length === 0) {
-      Lesson.create({
-        name: "Get Started",
-        graph: emptyGraphJSON
-      });
-      res.redirect("/");
-    } else {
-      res.render("lessonsList", {
-        lessons: foundItems,
-      });
-      // end of res.render
-    }
+    res.render("lessonsList", {
+      lessons: foundItems,
+    });
+    // end of res.render
   });
 });
 
@@ -112,6 +116,9 @@ app.post("/DeleteLesson", function(req, res) {
       console.log("Successfully deleted Lesson.");
       res.redirect("/");
     }
+    else{
+      console.log("Update err");
+    }
   });
 });
 
@@ -145,16 +152,13 @@ app.post("/ClearGraph", function(req, res) {
 });
 
 app.get("/:lessonId", function(req, res) {
-  let lessonId = req.params.lessonId;
   Lesson.find({
-    _id: lessonId
+    _id: req.params.lessonId
   }, function(err, foundItems) {
     if (!err) {
       res.render("Graph", {
         lesson: foundItems
       });
-    } else {
-      console.log("Lesson not found");
     }
   });
 });
