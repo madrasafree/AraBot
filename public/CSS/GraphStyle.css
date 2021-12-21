@@ -13,8 +13,8 @@ html {
 }
 
 #myPaletteDiv, #myDiagramDiv {
-  background-color: #9b9b9b;
   height: 87vh;
+  background-color: #9b9b9b;
 }
 
 .buttons form, h3{
@@ -23,6 +23,8 @@ html {
 
 .buttons button{
   margin: 0 10px 10px 0;
+  background-color: #9b9b9b;
+  color: white;
 }
 
 
@@ -30,6 +32,10 @@ html {
 /*//////////// Lessons List //////////////////////// */
 /*///////////////////////////////////////////////// */
 /*//////////////////////////////////////////////// */
+.lessonTitle{
+  font-family: 'M PLUS 1p', sans-serif;
+}
+
 .lessonsDisplay form{
     display: inline;
 }
