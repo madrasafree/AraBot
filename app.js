@@ -56,16 +56,6 @@ const emptyGraphJSON = {
 }
 
 
-app.get("/Madrasa", function(req, res) {
-  Lesson.find({}, function(err, foundItems) {
-    res.render("Madrasa", {
-      lesson: foundItems[0],
-    });
-    // end of res.render
-  });
-});
-
-
 //When loading the app
 app.get("/", function(req, res) {
   Lesson.find({}, function(err, foundItems) {
@@ -151,6 +141,27 @@ app.post("/ClearGraph", function(req, res) {
   res.redirect("/" + req.body.lessonId);
 });
 
+
+
+///////////////MADRASA PAGE/////////////
+app.get("/view/:lessonId", function(req, res) {
+  Lesson.find({
+    _id: req.params.lessonId
+  }, function(err, foundItems) {
+    if (!err) {
+      res.render("Madrasa", {
+        lesson: foundItems[0]
+      });
+    }
+  });
+});
+
+app.post("/view/:lessonId", function(req, res) {
+  res.redirect("/view/" + req.body.lessonId);
+});
+
+
+//////////GRAPH PAGE///////////////
 app.get("/:lessonId", function(req, res) {
   Lesson.find({
     _id: req.params.lessonId
