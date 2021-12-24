@@ -56,6 +56,8 @@ const emptyGraphJSON = {
 }
 
 
+
+
 //When loading the app
 app.get("/", function(req, res) {
   Lesson.find({}, function(err, foundItems) {
@@ -122,8 +124,6 @@ app.post("/saveGraph", function(req, res) {
   };
   updateLesson(filter, update);
   console.log("Successfully Saved The New GraphSchema");
-  //redirect to the graph page
-  // TODO: fix this
   res.redirect("/" + req.body.lessonId);
 });
 
@@ -137,27 +137,26 @@ app.post("/ClearGraph", function(req, res) {
   };
   updateLesson(filter, update);
   console.log("Successfully Cleared The GraphSchema");
-  // TODO: fix this
   res.redirect("/" + req.body.lessonId);
 });
 
 
 
 ///////////////MADRASA PAGE/////////////
-app.get("/view/:lessonId", function(req, res) {
+app.get("/viewScenario=:lessonId", function(req, res) {
   Lesson.find({
     _id: req.params.lessonId
   }, function(err, foundItems) {
     if (!err) {
       res.render("Madrasa", {
-        lesson: foundItems[0]
+        lesson: foundItems
       });
     }
   });
 });
 
-app.post("/view/:lessonId", function(req, res) {
-  res.redirect("/view/" + req.body.lessonId);
+app.post("/viewScenario=:lessonId", function(req, res) {
+  res.redirect("/viewScenario=" + req.body.lessonId);
 });
 
 

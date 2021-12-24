@@ -18,19 +18,24 @@
       <div class=" list-group-item list-group-item-action">
         <div class="input-group">
 
-          <!-- Display the lesson -->
+          <!-- Display the Scenarios -->
           <form class="display" action="/:lessonId" method="post">
             <button class="input-group-text lessonTitle" type="submit" name="lessonId" value="<%=lesson._id%>"> <%= lesson.name %> </button>
           </form>
 
           <!-- Rename the lesson -->
-          <form class="rename" action="/RenameLesson" method="POST">
+          <form class="rename" action="/RenameLesson" method="post">
             <input type="hidden" name="lessonId" value="<%=lesson._id%>"></input>
             <input class="form-control" type="text" name="NewTitle" placeholder="Rename" autocomplete="off">
           </form>
 
+          <!-- view Madrasa conversation -->
+          <form class="embed" action="/viewScenario=:lessonId" method="post">
+            <button class="btn btn-dark" type="submit" name="lessonId" value="<%=lesson._id%>"> Embed </button>
+          </form>
+
           <!-- Delete the lesson -->
-          <form class="delete" action="/DeleteLesson" method="POST">
+          <form class="delete" action="/DeleteLesson" method="post">
             <button class="btn btn-dark" type="submit" name="lessonToDelete" value="<%=lesson._id%>"> <i class="fas fa-trash"></i> </button>
           </form>
         </div>
