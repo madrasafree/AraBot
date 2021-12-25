@@ -1,37 +1,30 @@
 html {
-  padding: 0.8em;
   font-family: 'helvetica neue';
 }
 
-/*//////////// Graph//////////////////////////////// */
+/*//////////// navbar//////////////////////////////// */
 /*///////////////////////////////////////////////// */
 /*//////////////////////////////////////////////// */
-
-
-#myDiagramDiv {
-  flex-grow: 1;
+.logoNavbar{
+  direction: rtl;
 }
 
-#myPaletteDiv, #myDiagramDiv {
-  height: 87vh;
-  background-color: #9b9b9b;
+/*//////////// copyright//////////////////////////////// */
+/*///////////////////////////////////////////////// */
+/*//////////////////////////////////////////////// */
+.copyright{
+  direction: ltr;
+  text-align: center;
 }
-
-.buttons form, h3{
-  display: inline;
-}
-
-.buttons button{
-  margin: 0 10px 10px 0;
-  background-color: #9b9b9b;
-  color: white;
-}
-
-
 
 /*//////////// Lessons List //////////////////////// */
 /*///////////////////////////////////////////////// */
 /*//////////////////////////////////////////////// */
+.lessonsList{
+  margin: 1em 1.3em 0.8em 1.3em;
+  height: 74vh;
+}
+
 .lessonTitle{
   font-family: 'M PLUS 1p', sans-serif;
 }
@@ -58,6 +51,30 @@ html {
 
 .delete {
   float: right;
+}
+
+/*//////////// Graph//////////////////////////////// */
+/*///////////////////////////////////////////////// */
+/*//////////////////////////////////////////////// */
+
+
+#myDiagramDiv {
+  flex-grow: 1;
+}
+
+#myPaletteDiv, #myDiagramDiv {
+  height: 87vh;
+  background-color: #9b9b9b;
+}
+
+.buttons form, h3{
+  display: inline;
+}
+
+.buttons button{
+  margin: 0 10px 10px 0;
+  background-color: #9b9b9b;
+  color: white;
 }
 
 

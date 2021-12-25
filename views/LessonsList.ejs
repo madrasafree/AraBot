@@ -1,11 +1,14 @@
 <%- include("partials/header") -%>
 
-  <title>Lessons</title>
+<title>Lessons</title>
 </head>
 
 <body>
 
-  <div class="list-group container" style="margin: 1.3em;">
+  <!-- Add navbar at the top -->
+  <%- include("partials/navbar") -%>
+
+  <div class="list-group container lessonsList">
     <button type="button" class="list-group-item list-group-item-action sticky" disabled>
       <h3>Scenarios:</h3>
     </button>
@@ -36,7 +39,7 @@
 
           <!-- Delete the lesson -->
           <form class="delete" action="/DeleteLesson" method="post">
-            <button class="btn btn-dark" type="submit" name="lessonToDelete" value="<%=lesson._id%>"> <i class="fas fa-trash"></i> </button>
+            <button class="btn btn-dark" onclick="if (!confirm('Are you sure?')) { return false }" type="submit" name="lessonToDelete" value="<%=lesson._id%>"> <i class="fas fa-trash"></i> </button>
           </form>
         </div>
       </div>
@@ -46,4 +49,4 @@
 
   </div>
 
-<%- include("partials/footer") -%>
+  <%- include("partials/footer") -%>

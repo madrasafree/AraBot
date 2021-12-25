@@ -5,6 +5,9 @@
 
 <body dir="rtl">
 
+  <!-- Add navbar at the top -->
+  <%- include("partials/navbar") -%>
+
   <div class="chat">
     <!-- <div class="msg bot"></div> -->
     <div class="director-container">
@@ -25,17 +28,14 @@
 
 
   <!-- Passing lesson graph from EJS to javascript -->
-  <% var lessonGraph =  JSON.parse(lesson[0].graph)%>;
+  <% var lessonGraph =  JSON.parse(lesson[0].graph);%>
 
-  <!--<div id="mydiv" data-test=<%= lessonGraph %>></div>-->
 
 
   <script type="text/javascript">
     //Assign globlajason to the graph we get from database.
-    // var globlajason = document.getElementById('mydiv').dataset.test;
-    var globlajason = <%-JSON.stringify(lessonGraph)%>;
+    var globlajason = <%-JSON.stringify(lessonGraph) %> ;
 
-    console.log(globlajason);
 
     //The code below is the same as we get from prev project.
     const chat = $(".chat");
