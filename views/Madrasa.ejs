@@ -4,6 +4,7 @@
 </head>
 
 <body dir="rtl">
+
   <div class="chat">
     <!-- <div class="msg bot"></div> -->
     <div class="director-container">
@@ -23,9 +24,20 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
 
 
+  <!-- Passing lesson graph from EJS to javascript -->
+  <% var lessonGraph =  JSON.parse(lesson[0].graph)%>;
+
+  <!--<div id="mydiv" data-test=<%= lessonGraph %>></div>-->
+
 
   <script type="text/javascript">
+    //Assign globlajason to the graph we get from database.
+    // var globlajason = document.getElementById('mydiv').dataset.test;
+    var globlajason = <%-JSON.stringify(lessonGraph)%>;
 
+    console.log(globlajason);
+
+    //The code below is the same as we get from prev project.
     const chat = $(".chat");
     const director = $(".director-container");
 
@@ -127,8 +139,7 @@
     }
 
 
-    var graph = <%= lesson.graph %>;
-    var globlajason = JSON.parse(graph);
+
 
     function showBotAnswer(replay) {
       chat.append('<div class="msg bot">' + toTaatik(replay) + '</div>');
