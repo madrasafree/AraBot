@@ -147,7 +147,15 @@
     }
 
     function appendUserAnswer(replay) {
-      chat.append('<div class="msg user">' + toTaatik(replay) + ' </div>');
+      // for (var i = 0; i < Iterator.length; i++) {
+      //     if (deletePunctuation(Iterator[i].USER_ANSWER) == replay) {
+      //       console.log(replay);
+      //       newStr = Iterator[i].USER_ANSWER;
+      //       break;
+      //     }
+      //   }
+      chat.append('<div class="msg user">' + toTaatik(replay)+ ' </div>');
+      console.log(replay);
       director.html("");
 
     }
@@ -184,15 +192,16 @@
       function empty() {}
 
       var userAnswers = new Object();
-      var newUserAnswers = new Object();
+      //var newUserAnswers = new Object();
+
+
       function nodesToStringArray(nodeArray) {
         for (var i = 0; i < nodeArray.length; i++) {
           userAnswers[(nodeArray[i].USER_ANSWER)] = empty;
         }
-
-        for (property in userAnswers) {
-            newUserAnswers[deletePunctuation(property)] =  empty;
-        }
+        // for (property in userAnswers) {
+        //     newUserAnswers[deletePunctuation(property)] =  empty;
+        // }
       }
 
         
@@ -213,7 +222,7 @@
         }
         Iterator = getTragetNodes(innerIter[0]);
         nodesToStringArray(Iterator);  
-        annyang.addCommands(newUserAnswers);   
+        annyang.addCommands(userAnswers);   
         showBotton(innerIter[0].RECORDING);
         setTimeout(() => {
           giveOptions(userAnswers);
@@ -251,11 +260,11 @@
       annyang.addCallback('resultMatch', function(phrases) {
         SpeechKITT.abortRecognition();
         appendUserAnswer(phrases);
-        handleCommand(newUserAnswers);
+        handleCommand(userAnswers);
         userAnswers = new Object();
         var userAnswerIndex;
         for (var i = 0; i < Iterator.length; i++) {
-          if (deletePunctuation(Iterator[i].USER_ANSWER) == phrases || hasStarInIt(Iterator[i].USER_ANSWER)) {
+          if (Iterator[i].USER_ANSWER == phrases || hasStarInIt(Iterator[i].USER_ANSWER)) {
             userAnswerIndex = (getTragetNodes(Iterator[i]));
           }
         }
@@ -272,12 +281,38 @@
 
       annyang.addCallback('resultNoMatch', function(phrases) {
         SpeechKITT.abortRecognition(); 
+        var userAnswerIndex;
+        var match = false;
+        var str ;
+        for (var i = 0; i < Iterator.length; i++) {
+          if (deletePunctuation(Iterator[i].USER_ANSWER) == phrases || hasStarInIt(Iterator[i].USER_ANSWER)) {
+            userAnswerIndex = (getTragetNodes(Iterator[i]));
+            str = Iterator[i].USER_ANSWER;
+            match = true ;
+          }
+        }
+        if(match){
+          appendUserAnswer(str);
+          handleCommand(userAnswers);
+          userAnswers = new Object();
+          if (userAnswerIndex[0].category != "End") {
+          setTimeout(() => {
+            automateRun(userAnswerIndex);
+          }, 2000);
+        } else {
+          setTimeout(() => {
+            showBotAnswer("GoodBye :)");
+          }, 2000);
+        }
+        }
         //console.log(phrases);
+        if(!match){
         showBotAnswer("סליחה לא הבנתי" + " :" + "\"" + phrases[0] + "\"" + "<br> תנסה עוד פעם");
         setTimeout(() => {
           giveOptions(userAnswers);
         }, 2000);
-      });
+      }
+    });
 
       annyang.setLanguage("ar-JO");
       annyang.start({
