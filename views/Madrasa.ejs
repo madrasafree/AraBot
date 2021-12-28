@@ -147,14 +147,7 @@
     }
 
     function appendUserAnswer(replay) {
-      for (var i = 0; i < Iterator.length; i++) {
-          if (deletePunctuation(Iterator[i].USER_ANSWER) == replay) {
-            console.log(replay);
-            newStr = Iterator[i].USER_ANSWER;
-            break;
-          }
-        }
-      chat.append('<div class="msg user">' + toTaatik(newStr) + ' </div>');
+      chat.append('<div class="msg user">' + toTaatik(replay) + ' </div>');
       director.html("");
 
     }
