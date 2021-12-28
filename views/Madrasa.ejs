@@ -8,7 +8,7 @@
   <!-- Add navbar at the top -->
   <%- include("partials/navbar") -%>
 
-  <div class="chat">
+  <div class="chat"></div>
     <!-- <div class="msg bot"></div> -->
     <div class="director-container">
       <div id="msg director">
@@ -19,7 +19,7 @@
       <span>أهلين</span>
       <br>
     </div>
-  </div>
+  
 
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -116,7 +116,7 @@
           Object.keys(finalLetters).includes(letter)
         ) {
           taatik += finalLetters[letter];
-        } else if (!Object.keys(arabicToHebrew).includes(letter)) {
+        } else if (!Object.keys(arabicToHebrew).includes(letter)) {  //Punctuation
           taatik += letter;
         } else {
           taatik += arabicToHebrew[letter];
@@ -147,7 +147,14 @@
     }
 
     function appendUserAnswer(replay) {
-      chat.append('<div class="msg user">' + toTaatik(replay) + ' </div>');
+      for (var i = 0; i < Iterator.length; i++) {
+          if (deletePunctuation(Iterator[i].USER_ANSWER) == replay) {
+            console.log(replay);
+            newStr = Iterator[i].USER_ANSWER;
+            break;
+          }
+        }
+      chat.append('<div class="msg user">' + toTaatik(newStr) + ' </div>');
       director.html("");
 
     }
@@ -184,12 +191,27 @@
       function empty() {}
 
       var userAnswers = new Object();
-
+      var newUserAnswers = new Object();
       function nodesToStringArray(nodeArray) {
         for (var i = 0; i < nodeArray.length; i++) {
           userAnswers[(nodeArray[i].USER_ANSWER)] = empty;
         }
+
+        for (property in userAnswers) {
+            newUserAnswers[deletePunctuation(property)] =  empty;
+        }
       }
+
+        
+
+
+      function deletePunctuation(string_t){
+        tmpStr = string_t.replace(/[أإآ]/g , 'ا');
+        newStr = tmpStr.replace(/([^ا-ي0-9a-zA-Z*<>]+)/gi, ' ');
+        string_t = newStr.replace(/\s+/g,' ').trim();
+        return string_t;
+      }
+      
 
       function automateRun(innerIter) {
         if (innerIter[0].category == "Conditional") {
@@ -197,8 +219,8 @@
           playAudio(innerIter[0].RECORDING);
         }
         Iterator = getTragetNodes(innerIter[0]);
-        nodesToStringArray(Iterator);
-        annyang.addCommands(userAnswers);
+        nodesToStringArray(Iterator);  
+        annyang.addCommands(newUserAnswers);   
         showBotton(innerIter[0].RECORDING);
         setTimeout(() => {
           giveOptions(userAnswers);
@@ -236,11 +258,11 @@
       annyang.addCallback('resultMatch', function(phrases) {
         SpeechKITT.abortRecognition();
         appendUserAnswer(phrases);
-        handleCommand(userAnswers);
+        handleCommand(newUserAnswers);
         userAnswers = new Object();
         var userAnswerIndex;
         for (var i = 0; i < Iterator.length; i++) {
-          if (Iterator[i].USER_ANSWER == phrases || hasStarInIt(Iterator[i].USER_ANSWER)) {
+          if (deletePunctuation(Iterator[i].USER_ANSWER) == phrases || hasStarInIt(Iterator[i].USER_ANSWER)) {
             userAnswerIndex = (getTragetNodes(Iterator[i]));
           }
         }
@@ -256,8 +278,8 @@
       });
 
       annyang.addCallback('resultNoMatch', function(phrases) {
-        SpeechKITT.abortRecognition();
-        console.log(phrases);
+        SpeechKITT.abortRecognition(); 
+        //console.log(phrases);
         showBotAnswer("סליחה לא הבנתי" + " :" + "\"" + phrases[0] + "\"" + "<br> תנסה עוד פעם");
         setTimeout(() => {
           giveOptions(userAnswers);
@@ -274,7 +296,7 @@
 
       SpeechKITT.annyang();
       SpeechKITT.setStylesheet(
-        "https://cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat-pumpkin.css"
+        "https://cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat-turquoise.css"
       );
       SpeechKITT.setStartCommand(annyang.start);
       SpeechKITT.setAbortCommand(annyang.abort);
