@@ -208,8 +208,9 @@
 
 
       function deletePunctuation(string_t){
-        tmpStr = string_t.replace(/[أإآ]/g , 'ا');
-        newStr = tmpStr.replace(/([^ا-ي0-9a-zA-Z*<>]+)/gi, ' ');
+        replaceA = string_t.replace(/[أإآ]/g , 'ا');
+        replaceT = replaceA.replace(/[ة]/g , 'ه')
+        newStr = replaceT.replace(/([^ا-ي0-9a-zA-Z*<>]+)/gi, ' ');
         string_t = newStr.replace(/\s+/g,' ').trim();
         return string_t;
       }
@@ -285,12 +286,15 @@
         var match = false;
         var str ;
         for (var i = 0; i < Iterator.length; i++) {
-          if (deletePunctuation(Iterator[i].USER_ANSWER) == phrases || hasStarInIt(Iterator[i].USER_ANSWER)) {
-            userAnswerIndex = (getTragetNodes(Iterator[i]));
-            str = Iterator[i].USER_ANSWER;
-            match = true ;
+          for(var j = 0; j < phrases.length; j++){
+            if (deletePunctuation(Iterator[i].USER_ANSWER) == phrases[j] || hasStarInIt(Iterator[i].USER_ANSWER)) {
+              userAnswerIndex = (getTragetNodes(Iterator[i]));
+              str = Iterator[i].USER_ANSWER;
+              match = true ;
+            }
           }
         }
+      
         if(match){
           appendUserAnswer(str);
           handleCommand(userAnswers);
@@ -305,8 +309,9 @@
           }, 2000);
         }
         }
-        //console.log(phrases);
+        
         if(!match){
+          console.log(phrases);
         showBotAnswer("סליחה לא הבנתי" + " :" + "\"" + phrases[0] + "\"" + "<br> תנסה עוד פעם");
         setTimeout(() => {
           giveOptions(userAnswers);
