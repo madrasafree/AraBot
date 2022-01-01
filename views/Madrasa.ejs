@@ -116,7 +116,7 @@
           Object.keys(finalLetters).includes(letter)
         ) {
           taatik += finalLetters[letter];
-        } else if (!Object.keys(arabicToHebrew).includes(letter)) {  //Punctuation
+        } else if (!Object.keys(arabicToHebrew).includes(letter)) {  
           taatik += letter;
         } else {
           taatik += arabicToHebrew[letter];
@@ -147,13 +147,6 @@
     }
 
     function appendUserAnswer(replay) {
-      // for (var i = 0; i < Iterator.length; i++) {
-      //     if (deletePunctuation(Iterator[i].USER_ANSWER) == replay) {
-      //       console.log(replay);
-      //       newStr = Iterator[i].USER_ANSWER;
-      //       break;
-      //     }
-      //   }
       chat.append('<div class="msg user">' + toTaatik(replay)+ ' </div>');
       console.log(replay);
       director.html("");
@@ -192,16 +185,12 @@
       function empty() {}
 
       var userAnswers = new Object();
-      //var newUserAnswers = new Object();
 
 
       function nodesToStringArray(nodeArray) {
         for (var i = 0; i < nodeArray.length; i++) {
           userAnswers[(nodeArray[i].USER_ANSWER)] = empty;
         }
-        // for (property in userAnswers) {
-        //     newUserAnswers[deletePunctuation(property)] =  empty;
-        // }
       }
 
         
@@ -210,7 +199,7 @@
       function deletePunctuation(string_t){
         replaceA = string_t.replace(/[أإآ]/g , 'ا');
         replaceT = replaceA.replace(/[ة]/g , 'ه')
-        newStr = replaceT.replace(/([^ا-ي0-9a-zA-Z*<>]+)/gi, ' ');
+        newStr = replaceT.replace(/([^ا-ي0-9a-zA-Z*<>:]+)/gi, ' ');
         string_t = newStr.replace(/\s+/g,' ').trim();
         return string_t;
       }
@@ -260,15 +249,26 @@
 
       annyang.addCallback('resultMatch', function(phrases) {
         SpeechKITT.abortRecognition();
-        appendUserAnswer(phrases);
-        handleCommand(userAnswers);
-        userAnswers = new Object();
         var userAnswerIndex;
+        var match = false;
         for (var i = 0; i < Iterator.length; i++) {
           if (Iterator[i].USER_ANSWER == phrases || hasStarInIt(Iterator[i].USER_ANSWER)) {
             userAnswerIndex = (getTragetNodes(Iterator[i]));
+            match = true;
           }
         }
+        if(!match){
+          console.log(phrases);
+        showBotAnswer("סליחה לא הבנתי" + " :" + "\"" + phrases + "\"" + "<br> תנסה עוד פעם");
+        setTimeout(() => {
+          giveOptions(userAnswers);
+        }, 2000);
+        return;
+        }
+        
+        appendUserAnswer(phrases);
+        handleCommand(userAnswers);
+        userAnswers = new Object();
         if (userAnswerIndex[0].category != "End") {
           setTimeout(() => {
             automateRun(userAnswerIndex);
