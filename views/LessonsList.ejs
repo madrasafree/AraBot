@@ -55,8 +55,8 @@
 
     function copyToClipboard(lessonId) {
       const el = document.createElement('textarea');
-      var url = window.location.href + "/viewScenario=" + lessonId;
-      el.value = "<iframe src=" + url + "></iframe>";
+      var url = window.location.href + "viewScenario=" + lessonId;
+      el.value = "<iframe src=\"" + url + "\"></iframe>";
       document.body.appendChild(el);
       el.select();
       document.execCommand('copy');
