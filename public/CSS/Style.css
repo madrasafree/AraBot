@@ -39,7 +39,7 @@ html {
   margin: 0 20px 0 50px;
 }
 
-.embed{
+.embed, .view{
   margin-right: 5px;
 }
 
@@ -47,7 +47,7 @@ html {
   background: transparent;
   color: black;
   border: none;
-  width: 690px;
+  width: 620px;
 }
 
 .delete {

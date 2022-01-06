@@ -33,9 +33,13 @@
           </form>
 
           <!-- view Madrasa conversation -->
-          <form class="embed" action="/viewScenario=:lessonId" method="post">
-            <button class="btn btn-dark" type="submit" name="lessonId" value="<%=lesson._id%>"> Embed </button>
+          <form class="view" action="/viewScenario=:lessonId" method="post">
+            <button class="btn btn-dark" type="submit" name="lessonId" value="<%=lesson._id%>"> VIEW </button>
           </form>
+
+
+          <!-- EMBED: copy the link -->
+          <button class="embed btn btn-dark" onclick="copyToClipboard(<%= JSON.stringify(lesson._id) %>)"> EMBED </button>
 
           <!-- Delete the lesson -->
           <form class="delete" action="/DeleteLesson" method="post">
@@ -45,8 +49,21 @@
       </div>
       <% }); %>
     </div>
-
-
   </div>
+
+  <script type="text/javascript">
+
+    function copyToClipboard(lessonId) {
+      const el = document.createElement('textarea');
+      var url = window.location.href + "/viewScenario=" + lessonId;
+      el.value = "<iframe src=" + url + "></iframe>";
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      alert("URL Copied.");
+    }
+
+  </script>
 
   <%- include("partials/footer") -%>

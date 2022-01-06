@@ -5,9 +5,6 @@
 
 <body dir="rtl">
 
-  <!-- Add navbar at the top -->
-  <%- include("partials/navbar") -%>
-
   <div class="chat"></div>
     <!-- <div class="msg bot"></div> -->
     <div class="director-container">
@@ -19,7 +16,7 @@
       <span>أهلين</span>
       <br>
     </div>
-  
+
 
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -116,7 +113,7 @@
           Object.keys(finalLetters).includes(letter)
         ) {
           taatik += finalLetters[letter];
-        } else if (!Object.keys(arabicToHebrew).includes(letter)) {  
+        } else if (!Object.keys(arabicToHebrew).includes(letter)) {
           taatik += letter;
         } else {
           taatik += arabicToHebrew[letter];
@@ -193,7 +190,7 @@
         }
       }
 
-        
+
 
 
       function deletePunctuation(string_t){
@@ -203,7 +200,7 @@
         string_t = newStr.replace(/\s+/g,' ').trim();
         return string_t;
       }
-      
+
 
       function automateRun(innerIter) {
         if (innerIter[0].category == "Conditional") {
@@ -211,8 +208,8 @@
           playAudio(innerIter[0].RECORDING);
         }
         Iterator = getTragetNodes(innerIter[0]);
-        nodesToStringArray(Iterator);  
-        annyang.addCommands(userAnswers);   
+        nodesToStringArray(Iterator);
+        annyang.addCommands(userAnswers);
         showBotton(innerIter[0].RECORDING);
         setTimeout(() => {
           giveOptions(userAnswers);
@@ -265,7 +262,7 @@
         }, 2000);
         return;
         }
-        
+
         appendUserAnswer(phrases);
         handleCommand(userAnswers);
         userAnswers = new Object();
@@ -281,7 +278,7 @@
       });
 
       annyang.addCallback('resultNoMatch', function(phrases) {
-        SpeechKITT.abortRecognition(); 
+        SpeechKITT.abortRecognition();
         var userAnswerIndex;
         var match = false;
         var str ;
@@ -294,7 +291,7 @@
             }
           }
         }
-      
+
         if(match){
           appendUserAnswer(str);
           handleCommand(userAnswers);
@@ -309,7 +306,7 @@
           }, 2000);
         }
         }
-        
+
         if(!match){
           console.log(phrases);
         showBotAnswer("סליחה לא הבנתי" + " :" + "\"" + phrases[0] + "\"" + "<br> תנסה עוד פעם");
