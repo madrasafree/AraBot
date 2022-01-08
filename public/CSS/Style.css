@@ -88,12 +88,12 @@ html {
 .chat {
   background: #021924;
   position: relative;
-  max-width: 700px;
+  width: 55%;
   margin: auto;
   padding: 50px;
   border: 1px solid black;
   border-radius: 70px;
-  min-height: 500px;
+  height: 500px;
 }
 
 .director span {
@@ -108,7 +108,7 @@ html {
   width: fit-content;
   padding: 8px 20px;
   border-radius: 20px;
-  font-size: 26px;
+  font-size: 120%;
   margin-bottom: 10px;
 }
 
@@ -123,8 +123,8 @@ html {
   background: hsl(118, 81%, 69%);
 }
 
-.skitt-toggle-button{
-  position: absolute;
+.bot, .user{
+  font-size: 150%;
 }
 
 .director-container {
@@ -135,9 +135,31 @@ html {
   border-radius: 20px;
   position: absolute;
   margin: auto;
-  font-size: 26px;
+  font-size: 100%;
   bottom: 20px;
   left: 20px;
 }
 
+.skitt-ui--not-listening #skitt-toggle-button {
+  width: 60px;
+  height: 60px;
+  background-size: 72% 72%;
+  background-position: 7px 6px;
+}
+
+
+
+@media screen and (max-width: 1200px) {
+  .chat {
+    width: 65%;
+    height: 500px;
+    float: right;
+    margin: 2%;
+    padding: 20px;
+  }
+
+  .bot, .user{
+    font-size: 120%;
+  }
+}
 /*# sourceMappingURL=style.css.map */
