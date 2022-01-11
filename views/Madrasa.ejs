@@ -144,12 +144,17 @@
 
     }
 
-    function giveOptions(replay) {
+    function giveOptions(replay,Iterator) {
       director.append(
         '<div class="msg director">אנא הקליטו... <br> אפשרויות: '
       );
-      for (var option in replay) {
-        director.append('<span>' + toTaatik(option) + '<br></span>');
+      let i = 0
+      for (var option in replay){
+        console.log(Iterator[i].RECORDING);
+        if(Iterator[i].RECORDING == "true"){
+            director.append('<span>'+ toTaatik(option)+'<br></span>');
+        }
+        i++;
       }
       director.append(
         '</div> '
@@ -206,7 +211,7 @@
         annyang.addCommands(userAnswers);
         showBotton(innerIter[0].RECORDING);
         setTimeout(() => {
-          giveOptions(userAnswers);
+          giveOptions(userAnswers,Iterator);
         }, 2000);
       }
 
@@ -252,7 +257,7 @@
           console.log(phrases);
         showBotAnswer("סליחה לא הבנתי" + " :" + "\"" + phrases + "\"" + "<br> תנסה עוד פעם");
         setTimeout(() => {
-          giveOptions(userAnswers);
+          giveOptions(userAnswers,Iterator);
         }, 2000);
         return;
         }
@@ -305,7 +310,7 @@
           console.log(phrases);
         showBotAnswer("סליחה לא הבנתי" + " :" + "\"" + phrases[0] + "\"" + "<br> תנסה עוד פעם");
         setTimeout(() => {
-          giveOptions(userAnswers);
+          giveOptions(userAnswers,Iterator);
         }, 2000);
       }
     });

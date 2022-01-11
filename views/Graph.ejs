@@ -69,6 +69,7 @@
             strokeWidth: 3.5
           },
           new go.Binding("figure", "figure")),
+          $(go.Panel, "Auto","Vertical",
         $(go.TextBlock, textStyle(), {
             margin: 8,
             maxSize: new go.Size(200, NaN),
@@ -77,6 +78,15 @@
             editable: true
           },
           new go.Binding("text", "USER_ANSWER").makeTwoWay()),
+          $(go.TextBlock, textStyle(),
+                {
+                  margin: 8,
+                  maxSize: new go.Size(200, NaN),
+                  wrap: go.TextBlock.WrapFit,
+                  textAlign: "Center",
+                  editable: true
+                },
+                new go.Binding("text","RECORDING").makeTwoWay())),
         makePort("T", go.Spot.Top, go.Spot.TopSide, false, true),
         makePort("L", go.Spot.Left, go.Spot.LeftSide, true, true),
         makePort("R", go.Spot.Right, go.Spot.RightSide, true, true),
@@ -289,7 +299,8 @@
             },
             {
               category: "answer",
-              USER_ANSWER: "USER ANSWER"
+              USER_ANSWER: "USER ANSWER",
+              RECORDING: "Necessary"
             },
             {
               category: "End",
