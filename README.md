@@ -5,8 +5,8 @@ Arabic voice recognition chatbot using [Annyang Voice recognition Library](https
 
 ----
 ## HOW to use:
-1- install the files.
-2- init the project using "npm init".
-3- install the packages using "npm i node nodemon express ejs mongoose body-parser".
-4- now after you set up the project you can edit it.
-5- to display it in the browser use "nodemon app.js".
+1- install the files. <br />
+2- init the project using "npm init". <br />
+3- install the packages using "npm i node nodemon express ejs mongoose body-parser". <br />
+4- now after you set up the project you can edit it. <br />
+5- to display it in the browser use "nodemon app.js". <br />
