@@ -12,9 +12,6 @@
         אנא הקליטו...
       </div>
       אפשרויות:
-      <span>وعليكم السلام</span>
-      <span>أهلين</span>
-      <br>
     </div>
 
 
@@ -24,11 +21,12 @@
 
 
   <script type="text/javascript">
-    //Assign globlajason to the graph we get from database.
+    //Assign globlajason to the graph we got from database.
     var globlajason = <%-JSON.stringify(lessonGraph) %> ;
 
 
     //The code below is the same as we get from prev project.
+    //We deleted some of the code because we added DB.
     const chat = $(".chat");
     const director = $(".director-container");
 

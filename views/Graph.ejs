@@ -6,6 +6,9 @@
 
 <!-- import GoJS library -->
 <script src="https://unpkg.com/gojs/release/go.js"></script>
+
+<!-- ////////////////////////////////// The below code is the same as we got from prev project -->
+<!-- We add to the end of the file, in the body -->
 <script type="text/javascript">
   //jshint esversion:6
 
@@ -351,17 +354,24 @@
   <div class="container-fluid">
 
     <div class="buttons">
-      <h3> Lesson Title: "<%= lesson[0].name %>" </h3>
+
+      <!-- Display the Scenario title -->
+      <h3> Scenario Title: "<%= lesson[0].name %>" </h3>
+
+      <!-- Display the graph we got from database -->
       <button id="displayButton" type="button" class="btn" onclick="load(<%= JSON.stringify(lesson[0].graph) %>)">Last save</button>
+
+      <!-- Save the curr graph -->
       <form class="" action="/saveGraph" method="post">
         <button type="submit" class="btn" id="newGraph" name="newGraph" onclick="save()">Save</button>
         <input type="hidden" name="lessonId" value="<%=lesson[0]._id%>"></input>
       </form>
+
+      <!-- Clear the created graph, it will init the graph to start node -->
       <form class="" action="/ClearGraph" method="post">
         <button type="submit" class="btn">Clear</button>
         <input type="hidden" name="lessonId" value="<%=lesson[0]._id%>"></input>
       </form>
-
     </div>
 
     <div class="graph_building row">
@@ -370,7 +380,9 @@
     </div>
 
   </div>
-  <!-- jquery -->
+
+
+  <!-- Add jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript">
     // Click load button after 0.5 sec

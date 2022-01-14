@@ -6,14 +6,16 @@ html {
 /*///////////////////////////////////////////////// */
 /*//////////////////////////////////////////////// */
 .logoNavbar{
+  height: 12vh;
   direction: rtl;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 /*//////////// copyright//////////////////////////////// */
 /*///////////////////////////////////////////////// */
 /*//////////////////////////////////////////////// */
 .copyright{
+  height: 5vh;
   direction: ltr;
   text-align: center;
 }
@@ -22,8 +24,9 @@ html {
 /*///////////////////////////////////////////////// */
 /*//////////////////////////////////////////////// */
 .lessonsList{
-  margin: 1em 1.3em 0.8em 1.3em;
-  height: 75vh;
+  /* margin: 1em 1.3em 0.8em 1.3em; */
+  margin: 1.5vh 5vh;
+  height: 77vh;
 }
 
 .lessonTitle{
@@ -51,11 +54,25 @@ html {
   background: transparent;
   color: black;
   border: none;
-  /* width: 620px; */
+  width: 100%;
 }
 
 .delete {
   float: right;
+}
+
+@media screen and (min-height: 750px){
+  .logoNavbar{
+    height: 10vh;
+  }
+
+  .copyright{
+    height: 5vh;
+  }
+
+  .lessonsList{
+    height: 80vh;
+  }
 }
 
 /*//////////// Graph//////////////////////////////// */
@@ -98,10 +115,11 @@ html {
   position: relative;
   width: 55%;
   margin: auto;
+  margin-top: 5vh;
   padding: 50px;
   border: 1px solid black;
   border-radius: 70px;
-  height: 500px;
+  height: 90vh;
   overflow-y: scroll;
 }
 
@@ -140,13 +158,14 @@ html {
   float: left;
   color : white;
   background: #021924;
-  padding: 4px 10px;
+  padding: 20px 10px;
   border-radius: 20px;
   position: absolute;
   margin: auto;
   font-size: 100%;
   bottom: 20px;
   left: 20px;
+  overflow-y: scroll;
 }
 
 .skitt-ui--not-listening #skitt-toggle-button {
