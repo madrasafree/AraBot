@@ -25,8 +25,10 @@ html {
 /*//////////////////////////////////////////////// */
 .lessonsList{
   /* margin: 1em 1.3em 0.8em 1.3em; */
-  margin: 1.5vh 5vh;
+  margin: 1.5vh auto;
   height: 77vh;
+  width: 100%;
+  border-style: groove;
 }
 
 .lessonTitle{
@@ -61,7 +63,7 @@ html {
   float: right;
 }
 
-@media screen and (min-height: 750px){
+@media screen and ( min-height: 700px ){
   .logoNavbar{
     height: 10vh;
   }
@@ -71,7 +73,7 @@ html {
   }
 
   .lessonsList{
-    height: 80vh;
+    height:80vh;
   }
 }
 
@@ -180,7 +182,7 @@ html {
 @media screen and (max-width: 1200px) {
   .chat {
     width: 65%;
-    height: 500px;
+    height: 80vh;
     float: right;
     margin: 2%;
     padding: 20px;
