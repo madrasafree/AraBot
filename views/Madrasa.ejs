@@ -12,6 +12,9 @@
         אנא הקליטו...
       </div>
       אפשרויות:
+      <span>وعليكم السلام</span>
+      <span>أهلين</span>
+      <br>
     </div>
 
 
@@ -21,26 +24,14 @@
 
 
   <script type="text/javascript">
-    //Assign globlajason to the graph we got from database.
+    //Assign globlajason to the graph we get from database.
     var globlajason = <%-JSON.stringify(lessonGraph) %> ;
 
 
     //The code below is the same as we get from prev project.
-    //We deleted some of the code because we added DB.
     const chat = $(".chat");
     const director = $(".director-container");
 
-
-    // var xhttp = new XMLHttpRequest();
-    // xhttp.onreadystatechange = function() {
-    //   if (this.readyState == 4 && this.status == 200) {
-    //     const jasonIn = JSON.parse(xhttp.responseText);
-    //     return jasonIn;
-    //   }
-    // };
-    //
-    // xhttp.open("GET", "input.json", false);
-    // xhttp.send();
 
     let arabicToHebrew = {};
     let finalLetters = {};
@@ -137,7 +128,7 @@
 
     function appendUserAnswer(replay) {
       chat.append('<div class="msg user">' + toTaatik(replay)+ ' </div>');
-      console.log(replay);
+     // console.log(replay);
       director.html("");
 
     }
@@ -148,7 +139,7 @@
       );
       let i = 0
       for (var option in replay){
-        console.log(Iterator[i].RECORDING);
+     //   console.log(Iterator[i].RECORDING);
         if(Iterator[i].RECORDING == "true"){
             director.append('<span>'+ toTaatik(option)+'<br></span>');
         }
@@ -160,7 +151,7 @@
     }
 
     function showBotton(repet) {
-      director.html('<button id="myBtn"> שמע שוב </button>');
+      director.html('<button id="myBtn"> השמע שוב </button>');
       document.getElementById("myBtn").addEventListener("click", () => {
         playAudio(repet)
       });
@@ -171,7 +162,7 @@
 
       function handleCommand(XX) {
         for (let x in XX) {
-          console.log(x + " SSS");
+       //   console.log(x + " SSS");
           annyang.removeCommands(x);
         }
       }
@@ -252,7 +243,7 @@
           }
         }
         if(!match){
-          console.log(phrases);
+        //  console.log(phrases);
         showBotAnswer("סליחה לא הבנתי" + " :" + "\"" + phrases + "\"" + "<br> תנסה עוד פעם");
         setTimeout(() => {
           giveOptions(userAnswers,Iterator);
@@ -261,6 +252,7 @@
         }
 
         appendUserAnswer(phrases);
+        console.log(phrases);
         handleCommand(userAnswers);
         userAnswers = new Object();
         if (userAnswerIndex[0].category != "End") {
@@ -283,7 +275,12 @@
           for(var j = 0; j < phrases.length; j++){
             if (deletePunctuation(Iterator[i].USER_ANSWER) == phrases[j] || hasStarInIt(Iterator[i].USER_ANSWER)) {
               userAnswerIndex = (getTragetNodes(Iterator[i]));
-              str = Iterator[i].USER_ANSWER;
+              if(hasStarInIt(Iterator[i].USER_ANSWER)){
+                str = phrases[j];
+              }
+              else{
+                str = Iterator[i].USER_ANSWER;
+              }
               match = true ;
             }
           }
@@ -291,6 +288,7 @@
 
         if(match){
           appendUserAnswer(str);
+          console.log(str);
           handleCommand(userAnswers);
           userAnswers = new Object();
           if (userAnswerIndex[0].category != "End") {
@@ -305,7 +303,7 @@
         }
 
         if(!match){
-          console.log(phrases);
+         // console.log(phrases);
         showBotAnswer("סליחה לא הבנתי" + " :" + "\"" + phrases[0] + "\"" + "<br> תנסה עוד פעם");
         setTimeout(() => {
           giveOptions(userAnswers,Iterator);

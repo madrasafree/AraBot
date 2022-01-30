@@ -8,7 +8,6 @@
   <!-- Add navbar at the top -->
   <%- include("partials/navbar") -%>
 
-  <!-- Create Lessons List table -->
   <div class="list-group container lessonsList">
     <button type="button" class="list-group-item list-group-item-action sticky" disabled>
       <h3>Scenarios:</h3>
@@ -17,14 +16,12 @@
     <form class="list-group-item list-group-item-action" action="/" method="post">
       <input class="form-control" type="text" name="newLessonName" placeholder="New Lesson Title" autocomplete="off" required>
     </form>
-    <div class="lessonsDisplay" style="overflow:scroll;">
-
-      <!-- For each lessson create all the buttons -->
+    <div class="lessonsDisplay" style="overflow:scroll; height:400px;">
       <% lessons.forEach(function(lesson){ %>
       <div class=" list-group-item list-group-item-action">
         <div class="input-group">
 
-          <!-- Display the Scenarios, this will redirct to editor page -->
+          <!-- Display the Scenarios -->
           <form class="display" action="/:lessonId" method="post">
             <button class="input-group-text lessonTitle" type="submit" name="lessonId" value="<%=lesson._id%>"> <%= lesson.name %> </button>
           </form>
@@ -56,7 +53,6 @@
 
   <script type="text/javascript">
 
-    // Below function will copy the embed code to clipboard
     function copyToClipboard(lessonId) {
       const el = document.createElement('textarea');
       var url = window.location.href + "viewScenario=" + lessonId;
