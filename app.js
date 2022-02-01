@@ -21,10 +21,12 @@ app.use(bodyParser.urlencoded({
 //this will include css, or the static files
 app.use(express.static("public"));
 
-//insert mongoose to the projects so we will have dataBase
-mongoose.connect("mongodb://localhost:27017/ArabotDB", {
+// insert mongoose to the projects so we will have dataBase
+
+mongoose.connect("mongodb+srv://Madrasa:madrasa2022@cluster0.trxxd.mongodb.net/ArabotDB", {
   useNewUrlParser: true
 });
+
 
 //make a lesson schema
 const lessonSchema = new Schema({
@@ -61,7 +63,7 @@ const emptyGraphJSON = {
 //When loading the app
 app.get("/", function(req, res) {
   Lesson.find({}, function(err, foundItems) {
-    res.render("lessonsList", {
+    res.render("LessonsList", {
       lessons: foundItems,
     });
     // end of res.render
@@ -177,10 +179,12 @@ app.post("/:lessonId", function(req, res) {
   res.redirect("/" + req.body.lessonId);
 });
 
-
-
-///////// Add a port to listen////////////
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
 //our app list at port 3,000
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+app.listen(port, function() {
+  console.log("Server has started successfully.");
 });
+
