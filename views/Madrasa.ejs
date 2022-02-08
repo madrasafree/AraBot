@@ -271,6 +271,7 @@
         var userAnswerIndex;
         var match = false;
         var str ;
+        // Check if without punctuations there is a match , if yes so match=true
         for (var i = 0; i < Iterator.length; i++) {
           for(var j = 0; j < phrases.length; j++){
             if (deletePunctuation(Iterator[i].USER_ANSWER) == phrases[j] || hasStarInIt(Iterator[i].USER_ANSWER)) {
